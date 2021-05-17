@@ -142,6 +142,7 @@ async function getWeatherUser() {
   EyseS.textContent=`${data.list[0].weather[0].description}`;
   NCity.textContent=data.city['name'];
   city.textContent=data.city['name'];
+  CoyntriS.textContent=`${data.city.country}`;
   
   	getWeatherToDay();
 	getWeatherNextToDay();
