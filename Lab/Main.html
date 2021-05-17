@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@600&display=swap" rel="stylesheet">
+  <link href="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.css" rel="stylesheet">
+<script src="https://api.mapbox.com/mapbox-gl-js/v2.2.0/mapbox-gl.js"></script>
+  <link rel="stylesheet" href="Style/Style.css">
+  <link rel="stylesheet" href="Style/css/owfont-regular.css">
+  <title>weather</title>
+</head>
+<body>
+  <div class="Heder">
+	<div class="ButtNowIm"></div>
+	<div class="ButtEN"></div>
+	<div class="ButtRU"></div>
+	<div class="temp-btns">
+		<button class="tempF">°F</button>
+		<button class="tempC">°C</button>
+	</div>
+	<div class="city"></div>
+  </div>
+  <div class="BlockWinter">
+	  <div class="FirstWinter">
+		<div class="HenderFirst">
+			<span class="NameCity">_</span>
+			<span class="BeetwenCit">, </span>
+			<span class="Coyntri">_</span>
+		</div>
+		<div class="HenderFirstWint">
+			<span class="DateTime"></span>
+			<time class="time"></time>
+		</div>
+		<div class="NowWinter">
+			<div class="Tempetatyra">
+				<span class="MainTemp"><div class="temperature"></div><div class="IconTemp"></div></span>
+			</div>
+			<div class="InfWint">
+				<span class="Icon"><i class="weather-icon"></i></span>
+				<p class="Eyse">Overcast</p>
+				<span class="Wind"><span class="Like_Temp">Ощущение:</span><div class="LikeWinter"></div><div class="IconTempN"></div></span>
+				<span class="Wind"><span class="Need">Скорость ветра:</span><div class="SpeendWinter"></div></span>
+				<span class="Wind"><span class="Humit">Влажность:</span><div class="WaterWinter"></div></span>
+			</div>
+		</div>
+		<div class="LetGoDay">
+			<div class="NextDay">
+				<span class="FirstDayWeek">Trueday</span>
+				<span class="OutDay"><span class="MainTemp"><div class="FirstTemper"></div><div class="IconTempNext"></div></span><div class="Firstweather-icon"></div></span>
+			</div>
+			<div class="NextDay">
+				<span class="SeconDayWeek">Wednesday</span>
+				<span class="OutDay"><span class="MainTemp"><div class="SeconTemper"></div><div class="IconTempNextTo"></div></span><div class="Seconweather-icon"></div></span></span>
+			</div>
+			<div class="NextDay">
+				<span class="TrisDayWeek">Trusday</span>
+				<span class="OutDay"><span class="MainTemp"><div class="TrisTemper"></div><div class="IconTempToNextTo"></div></span><div class="Trisweather-icon"></div></span></span>
+			</div>
+		</div>
+	  </div>
+	  <div class="MapBlock">
+		<div id="map"></div>
+		<p class="Geor"><span class="LatText">Latitube:</span><span class="Latitube"></span></p>
+		<p class="Geor"><span class="LonText">Longitube:</span><span class="Longitube"></span></p>
+	  </div>
+	</div>
+  <script src="script.js"></script>
+</body>
+</html>
