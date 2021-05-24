@@ -4,6 +4,7 @@ body{
     -webkit-background-size: 100%; /* Safari 3.1+ и Chrome 4.0+ */
     -o-background-size: 100%; /* Opera 9.6+ */
     background-size: 100%; /* Современные браузеры */
+	font-weight: 700;
   transition: background-image 7.5s ease-in-out;
 }
 
@@ -44,11 +45,13 @@ body{
 .tempF{
 	height: 40px;
     border: none;
+	cursor:pointer;
     border-radius: 5px 0 0 5px;
 }
 .tempC{
     height: 40px;
     border: none;
+	cursor:pointer;
     border-radius: 0 5px 5px 0;
 }
 .tempF:active{
@@ -73,6 +76,7 @@ body{
 .ButtEN{
 	width: 35px;
     height: 20px;
+	cursor:pointer;
     background: url(Lang/EN.png);
     background-size: contain;
 	margin:30px 10px
@@ -81,6 +85,7 @@ body{
 .ButtRU{
 	width: 35px;
     height: 20px;
+	cursor:pointer;
     background: url(Lang/RU.png);
     background-size: contain;
 	margin:30px 10px
@@ -88,20 +93,34 @@ body{
 
 .city {
     background: rgb(214,216,218,.7);
-    width: 200px;
+    width: 160px;
     height: 20px;
 	margin-top:10px;
     margin-left: 620px;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 5px 0px 0px 5px;
+}
+
+.ButtSechCity{
+	background: rgb(214,216,218,.7);
+    width: 40px;
+	border-radius:0px 5px 5px 0px;
+    height: 40px;
+	border: none;
+	cursor:pointer;
+	margin-top:10px;
+	background-image:url("../images/Sech.png");
+	/*  background-size: contain;*/
+	padding:15px 10px;
+  background-repeat: no-repeat;
 }
 
 .HenderFirstWint{
 	display:flex;
-	color: rgb(115,50,50);
+	color: darkorange;
 }
 .HenderFirst{
-	color: rgb(115,50,50);
+	color: darkorange;
 }
 
 h3{
@@ -132,12 +151,12 @@ h3{
 .Tempetatyra{
 	font-size:140px;
 	margin-top:20px;
-	color: rgb(115,50,50);
+	color: darkorange;
 }
 
 .NowWinter{
 	display:flex;
-	color: rgb(115,50,50);
+	color: darkorange;
 	font-size:25px;
 }
 
@@ -170,7 +189,7 @@ h3{
 
 .Geor{
 	margin: 3px 0px;
-    color: rgb(115,50,50);
+    color: darkorange;
     font-size: 24px;
 	margin-left:200px;
 	font-weight: bold;
@@ -179,7 +198,8 @@ h3{
 .LetGoDay {
     margin: 30px 0px;
     font-size: 30px;
-    color: rgb(155,20,50);
+	max-width: 200px;
+    color: darkorange;
 	display: flex;
 }
 
@@ -210,13 +230,12 @@ h3{
 }
 
 
-
 @media (max-width: 1100px) {
    .city{
-	   margin-left:220px;
+	   margin-left:320px;
    }
    .MapBlock{
-	   margin-left:0px;
+	   margin-left:100px;
    }
    #map{
 	   margin-left:20px;
@@ -236,6 +255,15 @@ h3{
    .NextDay{
 	   margin:0 10px;
    }
+}
+
+@media(max-width:1000px){
+	.MapBlock{
+		margin-left:100px;
+	}
+	.city{
+		margin-left:320px;
+	}
 }
 
 @media (max-width: 900px) {

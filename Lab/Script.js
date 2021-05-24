@@ -37,6 +37,7 @@ const time = document.querySelector('.time'),
   Like_Temp=document.querySelector('.Like_Temp'),
   Humit=document.querySelector('.Humit'),
   Need=document.querySelector('.Need'),
+  ButtSechCity=document.querySelector('.ButtSechCity'),
   IconTempN=document.querySelector('.IconTempN'),
   NCity=document.querySelector('.NameCity');
 
@@ -44,6 +45,8 @@ var i=2;
 var clock=1;
 var NumLatit=0;
 var NumLongit=0;
+var ConstTime=0;
+var SechTime=0;
 var WeekDayRu=['Воскресение','Понедельник','Вторник','Среда','Четверг','Пятница','Суббата'];
 var WeekDayEN=['Sunday','Monday','Tuesday','Wednesday','Trursday','Friday','Saturday'];
 
@@ -57,6 +60,7 @@ function showTime() {
     min = today.getMinutes(),
     sec = today.getSeconds();
 	
+	hour=hour-ConstTime+SechTime;
   // Output Time
   time.innerHTML = `${addZero(hour)}<span>:</span>${addZero(min)}<span>:</span>${addZero(sec)}`;
 
@@ -83,7 +87,39 @@ function showDateTime() {
 
 //Button update
 async function getLinkToImage() {
-   const url = 'https://api.unsplash.com/photos/random?query=morning&client_id=e2077ad31a806c894c460aec8f81bc2af4d09c4f8104ae3177bb809faf0eac17';
+   let today = new Date(),
+	Month = today.getMonth(),
+    Hour=today.getHours();
+	
+	let Sytki='morning';
+	
+	if (Hour<6){
+		Sytki='morning';
+	}else if (Hour < 12) {
+		Sytki='day';
+	} else if (Hour < 18) {
+		Sytki='evening';
+	} else {
+		Sytki='night';
+	}     
+	
+	let Pora='';
+	
+	if ((Month<2)||(Month==11)){
+		Pora='winter';
+	}else if (Month < 5) {
+		Pora='spring';
+	} else if (Month < 8) {
+		Pora='summer';
+	} else {
+		Pora='autumn';
+	}
+	
+	
+	//console.log(Pora);&query=${Pora}
+	//console.log(Sytki);
+	
+const url = 'https://api.unsplash.com/photos/random?q=${Sytki}&q=${Pora}&client_id=e2077ad31a806c894c460aec8f81bc2af4d09c4f8104ae3177bb809faf0eac17';
    const res = await fetch(url);
    const data = await res.json();
    document.body.style.backgroundImage="url("+data.urls.regular+")";
@@ -92,12 +128,15 @@ async function getLinkToImage() {
  
 function ShowMap() {
 	mapboxgl.accessToken = 'pk.eyJ1IjoidG9zbGF2IiwiYSI6ImNrb3AwZHlueTBnZWYyb281MzJ6YWl3a3cifQ.G1zeK3_s5e7Ut1KDrBl0rw';
+	//var feature = response.body.features[0];
     var map = new mapboxgl.Map({
         container: 'map', // container id
         style: 'mapbox://styles/mapbox/streets-v11', // style URL
         center: [NumLongit,NumLatit], // starting position [lng, lat]
         zoom: 10 // starting zoom
     });
+	new mapboxgl.Marker().setLngLat([NumLongit,NumLatit]).addTo(map);
+	//console.log([NumLongit,NumLatit]);
 	getWeather();
 	getWeatherToDay();
 	getWeatherNextToDay();
@@ -123,7 +162,9 @@ const url =`https://api.openweathermap.org/data/2.5/forecast?lat=${NumLatit}&lon
   city.textContent=data.city['name'];
   NCity.textContent=data.city['name'];
   CoyntriS.textContent=`${data.city.country}`;
-
+  
+  ConstTime=data.city['timezone']/3600;
+  SechTime=ConstTime;
 }
 
 async function getWeatherUser() {
@@ -143,6 +184,8 @@ async function getWeatherUser() {
   NCity.textContent=data.city['name'];
   city.textContent=data.city['name'];
   CoyntriS.textContent=`${data.city.country}`;
+  
+  SechTime=data.city['timezone']/3600;
   
   	getWeatherToDay();
 	getWeatherNextToDay();
@@ -469,7 +512,7 @@ function getTemper(){
 
 
 function setCity(event) {
-  if (event.code === 'Enter') {
+  if ((event.code === 'Enter')||(event.which == 1)) {
     getWeatherUser();
 	getWeatherToDayUser();
 	getWeatherNextToDayUser();
@@ -481,6 +524,7 @@ function setCity(event) {
 navigator.geolocation.getCurrentPosition(success);
 document.addEventListener('DOMContentLoaded', getWeather);
 city.addEventListener('keypress', setCity);
+ButtSechCity.addEventListener('click', setCity);
 ButtNowIm.addEventListener('click', getLinkToImage);
 tempC.addEventListener('click',getTempC);
 tempF.addEventListener('click',getTempF);
